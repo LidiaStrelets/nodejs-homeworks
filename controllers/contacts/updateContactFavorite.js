@@ -1,10 +1,11 @@
 const { BadRequest } = require("http-errors");
 const { Contact } = require("./../../models");
 
-const updateContact = async (req, res, next) => {
+const updateContactFavorite = async (req, res, next) => {
   if (Object.keys(req.body).length === 0) {
     throw new BadRequest("Updates required!");
   }
+
   const update = await Contact.findByIdAndUpdate(req.params.contactId, {
     $set: req.body,
   });
@@ -19,4 +20,4 @@ const updateContact = async (req, res, next) => {
   });
 };
 
-module.exports = updateContact;
+module.exports = updateContactFavorite;
