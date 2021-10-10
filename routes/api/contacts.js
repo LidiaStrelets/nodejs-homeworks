@@ -1,12 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const { controllerWrapper, validation } = require("./../../middlewares");
+const { controllerWrapper, validation, auth } = require("./../../middlewares");
 const contactsControllers = require("../../controllers/contacts/");
 const {
   addSchema,
   patchSchema,
   patchFavoriteSchema,
-} = require("./../../models");
+} = require("./../../models/contacts");
+
+router.use(auth);
 
 router.get("/", controllerWrapper(contactsControllers.getContacts));
 

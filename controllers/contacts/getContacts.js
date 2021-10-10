@@ -1,7 +1,19 @@
-const { Contact } = require("./../../models");
+const { Contact } = require("./../../models/contacts");
 
 const getContacts = async (req, res, next) => {
-  const allContacts = await Contact.find({});
+  if (req.query.favorite) {
+    const favoriteContacts = await Contact.find({
+      owner: req.user,
+      favorite: true,
+    });
+    res.json({
+      status: "Succeed",
+      code: 200,
+      data: favoriteContacts,
+    });
+  }
+
+  const allContacts = await Contact.find({ owner: req.user });
   res.json({
     status: "Succeed",
     code: 200,
