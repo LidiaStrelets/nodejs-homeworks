@@ -35,7 +35,3 @@ const avatar = async (req, res) => {
 };
 
 module.exports = avatar;
-
-// app.post("/avatar", upload.single("avatar"), async (req, res, next) => {
-
-// });
