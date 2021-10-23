@@ -1,5 +1,6 @@
 const { User } = require("./../../models/auth");
 const { Conflict } = require("http-errors");
+const gravatar = require("gravatar");
 
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -13,8 +14,9 @@ const signup = async (req, res) => {
 
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(password, salt);
+  const avatarUrl = gravatar.url(email);
 
-  await User.create({ email, password: hash });
+  await User.create({ email, password: hash, avatarUrl });
   const createdUser = await User.findOne({ email });
   res.json({
     status: "Succeed",
