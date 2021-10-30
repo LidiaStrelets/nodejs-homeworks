@@ -5,12 +5,10 @@ require("dotenv").config();
 const { SECRET_KEY } = process.env;
 
 const auth = (req, res, next) => {
-  const token = req.headers.authorization.slice(7);
-
   if (!req.headers.authorization) {
     throw new Unauthorized("Token required!");
   }
-
+  const token = req.headers.authorization.slice(7);
   try {
     const user = jwt.decode(token, SECRET_KEY);
     if (!user) {

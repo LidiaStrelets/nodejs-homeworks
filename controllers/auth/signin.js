@@ -13,6 +13,9 @@ const signin = async (req, res) => {
   if (!currentUser) {
     throw new NotFound("No user with such email");
   }
+  if (!currentUser.verify) {
+    throw new Unauthorized("Confirmation required!");
+  }
   if (!bcrypt.compareSync(password, currentUser.password)) {
     throw new Unauthorized("Wrong password");
   }

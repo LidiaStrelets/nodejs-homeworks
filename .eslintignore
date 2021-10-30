@@ -4,3 +4,4 @@ app.js
 /models
 /middlewares
 /controllers
+/helpers
