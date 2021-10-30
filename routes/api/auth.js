@@ -17,6 +17,4 @@ router.post(
   controllerWrapper(authControllers.signin)
 );
 
-router.get("/signout", controllerWrapper(authControllers.signout));
-
 module.exports = router;
